@@ -1,0 +1,78 @@
+{
+  "_comment": "规则自上而下匹配，命中第一条即执行。when 内所有条件是 AND，数组值内部是 OR。",
+
+  "default": {
+    "redirect": "https://example.com/"
+  },
+
+  "rules": [
+    {
+      "name": "block-automation",
+      "when": { "is_bot": true },
+      "action": "block",
+      "status": 403,
+      "message": "Automated access is not allowed"
+    },
+
+    {
+      "name": "block-empty-ua",
+      "when": { "ua_missing": true },
+      "action": "block",
+      "status": 403,
+      "message": "Missing User-Agent"
+    },
+
+    {
+      "name": "mobile-to-m-site",
+      "when": { "device": ["mobile", "tablet"] },
+      "action": "redirect",
+      "targets": { "url": "https://m.example.com{path}" }
+    },
+
+    {
+      "name": "overseas-to-intl",
+      "when": { "cc": ["US", "GB", "DE", "JP", "SG"] },
+      "action": "redirect",
+      "targets": { "url": "https://intl.example.com/" }
+    },
+
+    {
+      "name": "canary-10pct",
+      "when": { "path_prefix": ["/"], "device": ["desktop"] },
+      "action": "redirect",
+      "targets": [
+        { "url": "https://v2.example.com{path}", "weight": 10 },
+        { "url": "https://example.com{path}",   "weight": 90 }
+      ]
+    },
+
+    {
+      "name": "api-rate-limit",
+      "when": { "path_prefix": ["/api/"] },
+      "limit": { "count": 120, "window": 60 },
+      "action": "pass"
+    },
+
+    {
+      "name": "in-app-browser-notice",
+      "when": { "client": ["wechat", "qq"], "path_prefix": ["/download"] },
+      "action": "render",
+      "file": "pages/open-in-browser.html"
+    },
+
+    {
+      "name": "office-hours-only",
+      "when": { "path_prefix": ["/promo"], "hour_range": [9, 18], "weekday": [1, 2, 3, 4, 5] },
+      "action": "redirect",
+      "targets": { "url": "https://example.com/promo-live" }
+    },
+
+    {
+      "name": "block-datacenter-ranges",
+      "when": { "cidr": ["10.0.0.0/8", "172.16.0.0/12"] },
+      "action": "block",
+      "status": 403,
+      "message": "Reserved address space"
+    }
+  ]
+}

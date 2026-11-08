@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>请在浏览器中打开</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    font: 16px/1.7 -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: #f6f7f9; color: #1f2328; padding: 24px;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0d1117; color: #e6edf3; }
+    .card { background: #161b22; border-color: #30363d; }
+    .step { background: #21262d; }
+  }
+  .card {
+    max-width: 30em; background: #fff; border: 1px solid #d8dee4;
+    border-radius: 14px; padding: 32px 28px; box-shadow: 0 2px 12px rgba(0,0,0,.05);
+  }
+  h1 { font-size: 1.35em; margin: 0 0 8px; }
+  p.lead { margin: 0 0 22px; opacity: .75; font-size: .95em; }
+  ol { padding-left: 1.2em; margin: 0 0 22px; }
+  li { margin-bottom: 12px; }
+  .step {
+    display: inline-block; background: #f0f2f4; border-radius: 6px;
+    padding: 1px 7px; font-size: .9em; font-weight: 600; margin-right: 6px;
+  }
+  .hint {
+    font-size: .85em; opacity: .6; border-top: 1px solid rgba(128,128,128,.25);
+    padding-top: 14px; margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>请用系统浏览器打开</h1>
+    <p class="lead">当前页面在 App 的内置浏览器中打开，部分功能会受限。</p>
+
+    <ol>
+      <li><span class="step">1</span>点击右上角 <b>···</b> 菜单</li>
+      <li><span class="step">2</span>选择 <b>在浏览器打开</b> / <b>在 Safari 中打开</b></li>
+      <li><span class="step">3</span>在浏览器中继续操作</li>
+    </ol>
+
+    <p class="hint">
+      提示：不同 App 的菜单名称略有不同，找不到时可以在右上角或底部工具栏寻找「浏览器」相关选项。
+    </p>
+  </div>
+</body>
+</html>

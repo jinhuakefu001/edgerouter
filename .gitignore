@@ -1,0 +1,16 @@
+# 运行时数据（IP 库、限流状态、日志）
+data/
+
+# 真实规则，可能含内部域名
+rules.json
+!rules.example.json
+
+# 编辑器
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+
+# 日志
+*.log
